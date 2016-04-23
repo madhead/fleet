@@ -1,0 +1,84 @@
+- name: Set hostname from inventory
+  hostname:
+    name: "{{ inventory_hostname }}"
+- name: Install base packages
+  apt:
+    name: "{{ item }}"
+    update_cache: true
+    state: latest
+    cache_valid_time: 86400
+  with_items:
+    - zsh
+    - git
+    - vim
+- name: Create madhead user
+  user:
+    name: madhead
+    password: "{{ 'password' | password_hash('sha512') }}"
+    shell: /bin/zsh
+- name: Force madhead to change password
+  shell: chage -d 0 madhead
+- name: Upload SSH key for madhead
+  authorized_key:
+    user: madhead
+    key: "{{ lookup('file', '/home/madhead/.ssh/id_ecdsa.pub') }}"
+- name: Set Zsh as a shell for root and madhead
+  user:
+    name: "{{ item }}"
+    shell: /bin/zsh
+  with_items:
+    - root
+    - madhead
+- name: Clone Oh My Zsh and configs
+  git:
+    repo: https://github.com/madhead/{{ item }}.git
+    dest: /home/madhead/{{ item }}
+  with_items:
+    - oh-my-zsh
+    - cfg
+- name: Link .zshrc for root and madhead
+  file:
+    src: /home/madhead/cfg/shell/.zshrc
+    dest: "{{ item.home }}/.zshrc"
+    state: link
+    force: true
+    owner: "{{ item.user }}"
+  with_items:
+    - user: madhead
+      home: /home/madhead
+    - user: root
+      home: /root
+- name: Set up .zshrc for root and madhead
+  lineinfile:
+    dest: "{{ item.home }}/.zshenv"
+    line: "ZSH=/home/madhead/oh-my-zsh"
+    create: true
+  with_items:
+    - user: madhead
+      home: /home/madhead
+    - user: root
+      home: /root
+- name: Add madhead to sudoers
+  copy:
+    src: madhead.sudoers
+    dest: /etc/sudoers.d/madhead
+    validate: visudo -cf %s
+- name: Close all ports
+  ufw:
+    state: enabled
+    policy: deny
+- name: Allow SSH connections
+  ufw:
+    rule: allow
+    port: 22
+- name: Tune SSH
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+    validate: /usr/sbin/sshd -T -f %s
+  notify:
+  - Restart SSH

@@ -1,0 +1,9 @@
+#!/usr/bin/env ansible-playbook
+
+---
+- name: Configure Alvotech hosts
+  hosts: alvotech
+  roles:
+    - role: remote-init
+      become: true
+      become_user: root
