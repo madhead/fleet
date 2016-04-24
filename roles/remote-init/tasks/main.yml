@@ -1,6 +1,7 @@
 - name: Set hostname from inventory
   hostname:
     name: "{{ inventory_hostname }}"
+  when: not docker
 - name: Install base packages
   apt:
     name: "{{ item }}"
@@ -15,13 +16,16 @@
   user:
     name: madhead
     password: "{{ 'password' | password_hash('sha512') }}"
-    shell: /bin/zsh
+    update_password: on_create
+  register: madhead
 - name: Force madhead to change password
   shell: chage -d 0 madhead
+  when: madhead.changed
 - name: Upload SSH key for madhead
   authorized_key:
     user: madhead
     key: "{{ lookup('file', '/home/madhead/.ssh/id_ecdsa.pub') }}"
+  when: not docker
 - name: Set Zsh as a shell for root and madhead
   user:
     name: "{{ item }}"
@@ -36,6 +40,16 @@
   with_items:
     - oh-my-zsh
     - cfg
+- name: Force ownership for Oh My Zsh and configs
+  file:
+    path: /home/madhead/{{ item }}
+    state: directory
+    recurse: true
+    owner: madhead
+    group: madhead
+  with_items:
+    - oh-my-zsh
+    - cfg
 - name: Link .zshrc for root and madhead
   file:
     src: /home/madhead/cfg/shell/.zshrc
@@ -43,21 +57,31 @@
     state: link
     force: true
     owner: "{{ item.user }}"
+    group: "{{ item.user }}"
   with_items:
     - user: madhead
       home: /home/madhead
     - user: root
       home: /root
-- name: Set up .zshrc for root and madhead
+- name: Set up .zshenv for root and madhead
   lineinfile:
     dest: "{{ item.home }}/.zshenv"
     line: "ZSH=/home/madhead/oh-my-zsh"
     create: true
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
   with_items:
     - user: madhead
       home: /home/madhead
     - user: root
       home: /root
+- name: Ensure sudoers.d directory exists
+  file:
+    path: /etc/sudoers.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 - name: Add madhead to sudoers
   copy:
     src: madhead.sudoers
@@ -67,10 +91,12 @@
   ufw:
     state: enabled
     policy: deny
+  when: not docker
 - name: Allow SSH connections
   ufw:
     rule: allow
     port: 22
+  when: not docker
 - name: Tune SSH
   template:
     src: sshd_config.j2
@@ -82,3 +108,4 @@
     validate: /usr/sbin/sshd -T -f %s
   notify:
   - Restart SSH
+  when: not docker
