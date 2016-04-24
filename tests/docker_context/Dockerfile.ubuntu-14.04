@@ -1,0 +1,8 @@
+FROM ubuntu:14.04
+
+RUN apt-get update
+RUN apt-get install -y software-properties-common git
+RUN apt-add-repository -y ppa:ansible/ansible
+RUN apt-add-repository -y ppa:duggan/bats
+RUN apt-get update
+RUN apt-get install -y ansible bats
