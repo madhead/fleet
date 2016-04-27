@@ -128,9 +128,5 @@
   copy:
     src: timezone
     dest: /etc/timezone
-- name: Force UTC timezone
-  copy:
-    src: timezone
-    dest: /etc/timezone
   notify:
   - Update tzdata
