@@ -20,6 +20,7 @@
     - zsh
     - git
     - vim
+    - unzip
 - name: Create madhead user
   user:
     name: madhead

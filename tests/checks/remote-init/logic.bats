@@ -18,6 +18,12 @@
   [[ $status -eq 0 ]]
 }
 
+@test "Vim must be installed" {
+  run unzip -v
+
+  [[ $status -eq 0 ]]
+}
+
 @test "madhead user must be created" {
   run id madhead
 
