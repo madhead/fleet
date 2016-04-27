@@ -101,6 +101,9 @@
   copy:
     src: madhead.sudoers
     dest: /etc/sudoers.d/madhead
+    owner: root
+    group: root
+    mode: 0440
     validate: visudo -cf %s
 - name: Close all ports
   ufw:

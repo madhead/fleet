@@ -85,6 +85,7 @@
   [[ -f /etc/sudoers.d/madhead ]]
   [[ $(stat -c "%U" /etc/sudoers.d/madhead) == "root" ]]
   [[ $(stat -c "%G" /etc/sudoers.d/madhead) == "root" ]]
+  [[ $(stat -c "%a" /etc/sudoers.d/madhead) == "440" ]]
   grep -q "madhead ALL=(ALL:ALL) ALL" /etc/sudoers.d/madhead
 }
 
