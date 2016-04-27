@@ -42,16 +42,22 @@
   with_items:
     - root
     - madhead
+- name: Ensure /home/madhead/projects directory exists
+  file:
+    path: /home/madhead/projects
+    state: directory
+    owner: madhead
+    group: madhead
 - name: Clone Oh My Zsh and configs
   git:
     repo: https://github.com/madhead/{{ item }}.git
-    dest: /home/madhead/{{ item }}
+    dest: /home/madhead/projects/{{ item }}
   with_items:
     - oh-my-zsh
     - cfg
 - name: Force ownership for Oh My Zsh and configs
   file:
-    path: /home/madhead/{{ item }}
+    path: /home/madhead/projects/{{ item }}
     state: directory
     recurse: true
     owner: madhead
@@ -61,7 +67,7 @@
     - cfg
 - name: Link .zshrc for root and madhead
   file:
-    src: /home/madhead/cfg/shell/.zshrc
+    src: /home/madhead/projects/cfg/shell/.zshrc
     dest: "{{ item.home }}/.zshrc"
     state: link
     force: true
@@ -75,7 +81,7 @@
 - name: Set up .zshenv for root and madhead
   lineinfile:
     dest: "{{ item.home }}/.zshenv"
-    line: "ZSH=/home/madhead/oh-my-zsh"
+    line: "ZSH=/home/madhead/projects/oh-my-zsh"
     create: true
     owner: "{{ item.user }}"
     group: "{{ item.user }}"

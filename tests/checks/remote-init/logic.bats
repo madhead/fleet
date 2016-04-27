@@ -38,40 +38,44 @@
   [[ $(getent passwd root | cut -d: -f7) == "/bin/zsh" ]]
 }
 
+@test "Ensure /home/madhead/projects is a directory" {
+  [[ -d /home/madhead/projects ]]
+}
+
 @test "Oh My Zsh configs must be cloned" {
-  [[ -d /home/madhead/oh-my-zsh ]]
-  [[ $(stat -c "%U" /home/madhead/oh-my-zsh) == "madhead" ]]
-  [[ $(stat -c "%G" /home/madhead/oh-my-zsh) == "madhead" ]]
+  [[ -d /home/madhead/projects/oh-my-zsh ]]
+  [[ $(stat -c "%U" /home/madhead/projects/oh-my-zsh) == "madhead" ]]
+  [[ $(stat -c "%G" /home/madhead/projects/oh-my-zsh) == "madhead" ]]
   [[ -z $(git -C /home/madhead/Projects/oh-my-zsh status -s) ]]
 }
 
 @test "Dotfiles must be cloned" {
-  [[ -d /home/madhead/cfg ]]
-  [[ $(stat -c "%U" /home/madhead/cfg) == "madhead" ]]
-  [[ $(stat -c "%G" /home/madhead/cfg) == "madhead" ]]
-  [[ -z $(git -C /home/madhead/cfg status -s) ]]
+  [[ -d /home/madhead/projects/cfg ]]
+  [[ $(stat -c "%U" /home/madhead/projects/cfg) == "madhead" ]]
+  [[ $(stat -c "%G" /home/madhead/projects/cfg) == "madhead" ]]
+  [[ -z $(git -C /home/madhead/projects/cfg status -s) ]]
 }
 
 @test ".zshrc must be configured for madhead" {
-  [[ $(readlink /home/madhead/.zshrc) == "/home/madhead/cfg/shell/.zshrc" ]]
+  [[ $(readlink /home/madhead/.zshrc) == "/home/madhead/projects/cfg/shell/.zshrc" ]]
   [[ $(stat -c "%U" /home/madhead/.zshrc) == "madhead" ]]
   [[ $(stat -c "%G" /home/madhead/.zshrc) == "madhead" ]]
 }
 
 @test ".zshrc must be configured for root" {
-  [[ $(readlink /root/.zshrc) == "/home/madhead/cfg/shell/.zshrc" ]]
+  [[ $(readlink /root/.zshrc) == "/home/madhead/projects/cfg/shell/.zshrc" ]]
   [[ $(stat -c "%U" /root/.zshrc) == "root" ]]
   [[ $(stat -c "%G" /root/.zshrc) == "root" ]]
 }
 
 @test ".zshenv must be configured for madhead" {
-  grep -q "ZSH=/home/madhead/oh-my-zsh" /home/madhead/.zshenv
+  grep -q "ZSH=/home/madhead/projects/oh-my-zsh" /home/madhead/.zshenv
   [[ $(stat -c "%U" /home/madhead/.zshenv) == "madhead" ]]
   [[ $(stat -c "%G" /home/madhead/.zshenv) == "madhead" ]]
 }
 
 @test ".zshenv must be configured for root" {
-  grep -q "ZSH=/home/madhead/oh-my-zsh" /root/.zshenv
+  grep -q "ZSH=/home/madhead/projects/oh-my-zsh" /root/.zshenv
   [[ $(stat -c "%U" /root/.zshenv) == "root" ]]
   [[ $(stat -c "%G" /root/.zshenv) == "root" ]]
 }
