@@ -77,3 +77,7 @@
   [[ $(stat -c "%G" /etc/sudoers.d/madhead) == "root" ]]
   grep -q "madhead ALL=(ALL:ALL) ALL" /etc/sudoers.d/madhead
 }
+
+@test "Timezone should be Etc/UTC" {
+  grep -q "Etc/UTC" /etc/timezone
+}

@@ -2,3 +2,5 @@
   service:
     name: ssh
     state: restarted
+- name: Update tzdata
+  command: /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata
