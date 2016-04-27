@@ -12,3 +12,8 @@
     - role: remote-init
       become: true
       become_user: root
+    - role: geerlingguy.java
+      java_packages:
+        - openjdk-8-jdk
+      become: true
+      become_user: root
