@@ -42,6 +42,14 @@
   with_items:
     - root
     - madhead
+- name: Ensure Zsh reads /etc/profile
+  template:
+    src: zprofile.j2
+    dest: /etc/zsh/zprofile
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
 - name: Ensure /home/madhead/projects directory exists
   file:
     path: /home/madhead/projects

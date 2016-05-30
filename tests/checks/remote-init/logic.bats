@@ -38,6 +38,10 @@
   [[ $(getent passwd root | cut -d: -f7) == "/bin/zsh" ]]
 }
 
+@test "Zsh should read /etc/profile" {
+  grep -q "emulate sh -c 'source /etc/profile'" /etc/zsh/zprofile
+}
+
 @test "Ensure /home/madhead/projects is a directory" {
   [[ -d /home/madhead/projects ]]
 }
