@@ -1,0 +1,11 @@
+java:
+  version:
+    minor: "8"
+    update: "91"
+    build: "14"
+
+  checksum: "sha256: 6f9b516addfc22907787896517e400a62f35e0de4a7b4d864b26b61dbe1b7552"
+
+  single_installation: true # Keep other Java distributions or remove them?
+
+  install_directory: /opt/java
