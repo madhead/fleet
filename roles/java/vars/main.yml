@@ -1,0 +1,2 @@
+distribution_url: "http://download.oracle.com/otn-pub/java/jdk/{{ java.version.minor }}u{{ java.version['update'] }}-b{{ java.version.build }}/jdk-{{ java.version.minor }}u{{ java.version['update'] }}-linux-x64.tar.gz"
+tmp_file: "/tmp/jdk-{{ java.version.minor }}u{{ java.version['update'] }}-linux-x64.tar.gz"

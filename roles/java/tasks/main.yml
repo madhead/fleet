@@ -1,0 +1,45 @@
+- name: Download Java distribution
+  get_url:
+    url: "{{ distribution_url }}"
+    dest: "{{ tmp_file }}"
+    headers: "Cookie:oraclelicense=accept-securebackup-cookie"
+    checksum: "{{ java.checksum }}"
+- name: Create required directories
+  file:
+    path: "{{ java.install_directory }}"
+    owner: root
+    group: root
+    state: directory
+- name: Unpack distribution
+  unarchive:
+    list_files: true
+    src: "{{ tmp_file }}"
+    dest: "{{ java.install_directory }}"
+    copy: false
+    owner: root
+    group: root
+  register: unpacked
+- name: Create unversioned symlink
+  file:
+    src: "{{ java.install_directory }}/{{ (unpacked.files[0] + '/') | dirname }}"
+    dest: "{{ java.install_directory }}/java"
+    state: link
+    owner: root
+    group: root
+- name: Create environment entry for JAVA_HOME
+  template:
+    src: java.sh.j2
+    dest: /etc/profile.d/java.sh
+    owner: root
+    group: root
+    mode: 0755
+- name: Remove temporary file
+  when: global.clean_tmp
+  file:
+    path: "{{ tmp_file }}"
+    state: absent
+- name: Keep single Java version
+  when: java.single_installation
+  shell: "find . -maxdepth 1 -and \\( -not -name java -and -not -name {{ (unpacked.files[0] + '/') | dirname }} -and \\( -type f -or -type d -or -type l \\) \\) -exec rm -r \"{}\" \\;"
+  args:
+    chdir: "{{ java.install_directory }}"
