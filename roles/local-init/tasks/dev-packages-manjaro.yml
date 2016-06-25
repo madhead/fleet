@@ -1,0 +1,21 @@
+- name: Update pacman cache
+  pacman:
+    update_cache: true
+- name: Install dev packages
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - ansible
+    - avr-gcc
+    - avrdude
+    - docker
+    - go
+    - vagrant
+    - virtualbox
+    - nodejs
+    - npm
+    # AUR
+    # - atom-editor
+    # - heroku-toolbelt
+    # - nvm

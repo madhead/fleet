@@ -1,0 +1,14 @@
+- name: Update pacman cache
+  pacman:
+    update_cache: true
+- name: Install games
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - 0ad
+- name: Install Steam
+  pacman:
+    name: steam-manjaro
+    state: latest
+  when: ansible_distribution == 'Manjaro Linux'

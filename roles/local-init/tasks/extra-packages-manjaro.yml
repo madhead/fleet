@@ -1,0 +1,29 @@
+- name: Update pacman cache
+  pacman:
+    update_cache: true
+- name: Install extra packages
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - amarok
+    - bluez
+    - calibre
+    - cowsay
+    - gimp
+    - inkscape
+    - kdiff3
+    - krusader
+    - kstars
+    - stellarium
+    - redshift
+    - wireshark-common
+    - wireshark-qt
+    - rclone
+    - ktorrent
+    - tig
+    - bind-tools
+    - keepass
+    # AUR
+    # - google-chrome
+    # - saberlight-git

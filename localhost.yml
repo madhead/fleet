@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+
+---
+- name: Configure localhost
+  hosts: localhost
+  pre_tasks:
+    - set_fact:
+        docker: "{{ ansible_virtualization_type is defined and ansible_virtualization_type == 'docker' and ansible_virtualization_role == 'guest' }}"
+    - debug:
+        msg: "Running on Docker?: {{ docker }}"
+  roles:
+    - role: local-init
+      become: true
+      become_user: root
+    - role: java
+      become: true
+      become_user: root
+      tags:
+        - java
