@@ -12,6 +12,10 @@
     - role: remote-init
       become: true
       become_user: root
+      tags:
+        - init
     - role: java
       become: true
       become_user: root
+      tags:
+        - java
