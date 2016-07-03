@@ -1,0 +1,6 @@
+packt4free:
+  version: 1.2.0
+
+  single_installation: true # Keep other versions or remove them?
+
+  install_directory: /opt/packt4free

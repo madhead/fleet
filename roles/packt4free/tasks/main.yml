@@ -1,0 +1,64 @@
+- name: Download packt4free distribution
+  get_url:
+    url: https://dl.bintray.com/madhead/madhead/packt4free-{{ packt4free.version }}.zip
+    dest: /tmp/packt4free-{{ packt4free.version }}.zip
+- name: Create required directories
+  file:
+    path: "{{ packt4free.install_directory }}"
+    owner: root
+    group: root
+    state: directory
+- name: Unpack distribution
+  unarchive:
+    list_files: true
+    src: /tmp/packt4free-{{ packt4free.version }}.zip
+    dest: "{{ packt4free.install_directory }}"
+    copy: false
+    owner: root
+    group: root
+  register: unpacked
+- name: Create unversioned symlink
+  file:
+    src: "{{ packt4free.install_directory }}/{{ (unpacked.files[0] + '/') | dirname }}"
+    dest: "{{ packt4free.install_directory }}/packt4free"
+    state: link
+    owner: root
+    group: root
+- name: Check if madhead user exists
+  action: shell /usr/bin/getent passwd madhead | /usr/bin/wc -l | tr -d ' '
+  register: madhead_exists
+- debug:
+    var: madhead_exists
+- name: Ensure user's bin directory exists
+  file:
+    path: /home/madhead/bin
+    owner: madhead
+    group: madhead
+    state: directory
+  when: madhead_exists.rc == 0
+- name: Create wrapper script
+  template:
+    src: packt4free.sh.j2
+    dest: /home/madhead/bin/packt4free.sh
+    owner: madhead
+    group: madhead
+    mode: 0700
+  when: madhead_exists.rc == 0
+- name: Schedule cron entry
+  cron:
+    name: Email about free Packt Publishing eBooks daily
+    minute: 0
+    hour: 1
+    job: /home/madhead/bin/packt4free.sh
+    user: madhead
+  when: madhead_exists.rc == 0
+- name: Remove temporary file
+  when: global.clean_tmp
+  file:
+    path: /tmp/packt4free-{{ packt4free.version }}.zip
+    state: absent
+- name: Keep single version
+  when: packt4free.single_installation
+  shell: "find . -maxdepth 1 -and \\( -not -name packt4free -and -not -name {{ (unpacked.files[0] + '/') | dirname }} -and \\( -type f -or -type d -or -type l \\) \\) -exec rm -r \"{}\" \\;"
+  args:
+    chdir: "{{ packt4free.install_directory }}"

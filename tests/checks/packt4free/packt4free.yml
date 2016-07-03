@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  pre_tasks:
+    - set_fact:
+        docker: "{{ ansible_virtualization_type is defined and ansible_virtualization_type == 'docker' and ansible_virtualization_role == 'guest' }}"
+    - debug:
+        msg: "Running on Docker?: {{ docker }}"
+  roles:
+    - role: packt4free
