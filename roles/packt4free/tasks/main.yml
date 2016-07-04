@@ -27,8 +27,6 @@
 - name: Check if madhead user exists
   action: shell /usr/bin/getent passwd madhead | /usr/bin/wc -l | tr -d ' '
   register: madhead_exists
-- debug:
-    var: madhead_exists
 - name: Ensure user's bin directory exists
   file:
     path: /home/madhead/bin

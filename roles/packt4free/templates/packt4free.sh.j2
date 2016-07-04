@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export JAVA_HOME="{{ java.install_directory }}/java"
+
 export PACKT4FREE_SMTP_SERVER="{{ lookup('ini', 'packt4free.smtp.server type=properties file=packt4free.properties') }}"
 export PACKT4FREE_SMTP_PORT="{{ lookup('ini', 'packt4free.smtp.port type=properties file=packt4free.properties') }}"
 export PACKT4FREE_SMTP_USERNAME="{{ lookup('ini', 'packt4free.smtp.username type=properties file=packt4free.properties') }}"
