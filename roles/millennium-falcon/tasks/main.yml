@@ -18,3 +18,4 @@
   tags:
     - game-packages
     - packages
+- include: projects.yml

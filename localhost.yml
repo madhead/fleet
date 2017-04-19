@@ -2,16 +2,18 @@
 
 ---
 - name: Configure localhost
-  hosts: localhost
+  hosts: millennium-falcon
   pre_tasks:
     - set_fact:
         docker: "{{ ansible_virtualization_type is defined and ansible_virtualization_type == 'docker' and ansible_virtualization_role == 'guest' }}"
     - debug:
         msg: "Running on Docker?: {{ docker }}"
   roles:
-    - role: local-init
+    - role: millennium-falcon
       become: true
       become_user: root
+      tags:
+        - base
     - role: java
       become: true
       become_user: root
