@@ -24,7 +24,16 @@
     - tig
     - bind-tools
     - keepass
-    # AUR
-    # - google-chrome
-    # - saberlight-git
-    # Remove yakuake
+    - aspell-en
+- name: Install extra packages
+  command: yaourt -S {{ item }} --noconfirm --needed
+  with_items:
+    - google-chrome
+    - saberlight-git
+  become: false
+- name: Remove unneeded packages
+  pacman:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - yakuake

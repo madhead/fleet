@@ -16,6 +16,9 @@
     - virtualbox
     - nodejs
     - npm
-    # AUR
-    # - heroku-toolbelt
-    # - nvm
+- name: Install dev packages
+  command: yaourt -S {{ item }} --noconfirm --needed
+  with_items:
+    - heroku-toolbelt
+    - nvm #TODO: add to PATH
+  become: false
