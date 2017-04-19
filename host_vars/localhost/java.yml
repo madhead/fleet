@@ -1,11 +1,12 @@
 java:
   version:
     minor: "8"
-    update: "91"
-    build: "14"
+    update: "131"
+    build: "11"
 
-  checksum: "sha256: 6f9b516addfc22907787896517e400a62f35e0de4a7b4d864b26b61dbe1b7552"
+  checksum: "sha256: 62b215bdfb48bace523723cdbb2157c665e6a25429c73828a32f00e587301236"
+  url_hash: "d54c1d3a095b4ff2b6607d096fa80163"
 
   single_installation: true # Keep other Java distributions or remove them?
 
-  install_directory: /mnt/data/tools/java
+  install_directory: /opt/tools/java
