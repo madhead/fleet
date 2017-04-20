@@ -1,0 +1,15 @@
+# Chewie, we're home!
+
+- name: Set up home subdirectories
+  include: home_subdirectory.yml
+  with_items:
+    - Books
+    - Desktop
+    - Documents
+    - Downloads
+    - KeePass
+    - Music
+    - Pictures
+    - Projects
+    - Public
+    - Videos

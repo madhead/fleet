@@ -18,4 +18,6 @@
   tags:
     - game-packages
     - packages
-- include: projects.yml
+- include: home_subdirectories/main.yml
+  tags:
+    - home

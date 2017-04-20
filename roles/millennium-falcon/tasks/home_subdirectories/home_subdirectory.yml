@@ -1,0 +1,11 @@
+- file:
+    path: /home/{{ millennium_falcon.pilot }}/{{ item }}
+    owner: "{{ millennium_falcon.pilot }}"
+    group: "{{ millennium_falcon.crew }}"
+    state: directory
+- copy:
+    src: ../files/home_subdirectories/{{ item }}.directory
+    dest: /home/{{ millennium_falcon.pilot }}/{{ item }}/.directory
+    owner: "{{ millennium_falcon.pilot }}"
+    group: "{{ millennium_falcon.crew }}"
+    mode: 0644
