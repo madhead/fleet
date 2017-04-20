@@ -4,3 +4,6 @@
 - include: home/main.yml
   tags:
     - home
+- include: projects/main.yml
+  tags:
+    - projects
