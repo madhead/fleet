@@ -1,0 +1,3 @@
+- name: Install packages (Manjaro Linux)
+  include: manjaro/main.yml
+  when: ansible_distribution == 'Manjaro Linux'

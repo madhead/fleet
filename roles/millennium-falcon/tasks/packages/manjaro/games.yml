@@ -11,4 +11,3 @@
   pacman:
     name: steam-manjaro
     state: latest
-  when: ansible_distribution == 'Manjaro Linux'

@@ -1,23 +1,6 @@
-- include: base-packages-manjaro.yml
-  when: ansible_distribution == 'Manjaro Linux'
+- include: packages/main.yml
   tags:
-    - base-packages
     - packages
-- include: dev-packages-manjaro.yml
-  when: ansible_distribution == 'Manjaro Linux'
-  tags:
-    - dev-packages
-    - packages
-- include: extra-packages-manjaro.yml
-  when: ansible_distribution == 'Manjaro Linux'
-  tags:
-    - extra-packages
-    - packages
-- include: game-packages-manjaro.yml
-  when: ansible_distribution == 'Manjaro Linux'
-  tags:
-    - game-packages
-    - packages
-- include: home_subdirectories/main.yml
+- include: home/main.yml
   tags:
     - home
