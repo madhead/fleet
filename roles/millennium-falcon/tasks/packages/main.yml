@@ -1,3 +1,12 @@
-- name: Install packages (Manjaro Linux)
-  include: manjaro/main.yml
-  when: ansible_distribution == 'Manjaro Linux'
+- include: base.yml
+  tags:
+    - base-packages
+- include: dev.yml
+  tags:
+    - dev-packages
+- include: extra.yml
+  tags:
+    - extra-packages
+- include: games.yml
+  tags:
+    - games-packages
