@@ -19,6 +19,7 @@
     - redshift
     - wireshark-common
     - wireshark-qt
+    - strace
     - rclone
     - ktorrent
     - tig
