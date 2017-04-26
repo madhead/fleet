@@ -7,3 +7,6 @@
 - include: projects/main.yml
   tags:
     - projects
+- include: settings/main.yml
+  tags:
+    - settings

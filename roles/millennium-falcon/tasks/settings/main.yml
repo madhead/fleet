@@ -1,0 +1,2 @@
+- name: Enable network time
+  command: timedatectl set-ntp true
