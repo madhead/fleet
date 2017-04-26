@@ -30,6 +30,7 @@
   with_items:
     - google-chrome
     - saberlight-git
+    - whatpulse
   become: false
 - name: Remove unneeded packages
   pacman:
@@ -37,3 +38,4 @@
     state: absent
   with_items:
     - yakuake
+    - qbittorrent
