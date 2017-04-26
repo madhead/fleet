@@ -1,2 +1,9 @@
 - name: Enable network time
   command: timedatectl set-ntp true
+- name: Appearance / Workspace Theme / Cursor Theme
+  file:
+    dest: /home/{{ millennium_falcon.pilot }}/.config/kcminputrc
+    src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/.config/kcminputrc
+    owner: "{{ millennium_falcon.pilot }}"
+    group: "{{ millennium_falcon.crew }}"
+    state: link
