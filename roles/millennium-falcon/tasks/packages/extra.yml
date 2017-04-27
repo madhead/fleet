@@ -8,6 +8,7 @@
   with_items:
     - amarok
     - bluez
+    - bluez-utils
     - calibre
     - cowsay
     - gimp
