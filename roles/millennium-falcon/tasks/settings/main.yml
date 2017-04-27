@@ -1,17 +1,7 @@
-- name: Enable network time
-  command: timedatectl set-ntp true
+- include: system_settings.yml
+  tags:
+    - system-settings
 
-- name: Appearance / Workspace Theme / Look And Feel
-  file:
-    dest: /home/{{ millennium_falcon.pilot }}/.config/kdeglobals
-    src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/.config/kdeglobals
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
-    state: link
-- name: Appearance / Workspace Theme / Cursor Theme
-  file:
-    dest: /home/{{ millennium_falcon.pilot }}/.config/kcminputrc
-    src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/.config/kcminputrc
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
-    state: link
+- include: atom.yml
+  tags:
+    - atom-settings

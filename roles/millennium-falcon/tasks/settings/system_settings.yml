@@ -1,0 +1,15 @@
+- name: 'Settings :: System Settings :: Manjaro :: Time and Date :: Set time and date automatically'
+  command: timedatectl set-ntp true
+
+- include: system_settings_item.yml
+  with_items:
+    - .config/kdeglobals
+    - .config/plasmarc
+    - .config/kcminputrc
+    - .config/ksplashrc
+    - .config/kwinrc
+    - .kde4/share/apps/color-schemes/Breath.colors
+    - .kde4/share/apps/color-schemes/Maia Dark.colors
+    - .kde4/share/apps/color-schemes/Maia.colors
+    - .kde4/share/config/kdeglobals
+    - .kde4/share/config/kdiff3rc

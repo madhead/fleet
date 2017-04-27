@@ -1,0 +1,13 @@
+- name: 'Settings :: Atom :: Remove default keymap'
+  file:
+    path: /home/{{ millennium_falcon.pilot }}/.atom/keymap.cson
+    state: absent
+- name: 'Settings :: Atom :: Configure keymap'
+  file:
+    dest: /home/{{ millennium_falcon.pilot }}/.atom/keymap.cson
+    src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/atom/keymap.cson
+    owner: "{{ millennium_falcon.pilot }}"
+    group: "{{ millennium_falcon.crew }}"
+    state: link
+# TODO: Install packages and themes
+# TODO: Configs?

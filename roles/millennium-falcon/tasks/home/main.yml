@@ -1,7 +1,6 @@
 # Chewie, we're home!
 
-- name: Set up home subdirectories
-  include: home_subdirectory.yml
+- include: home_subdirectory.yml
   with_items:
     - Books
     - Desktop
