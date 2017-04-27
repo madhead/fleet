@@ -1,6 +1,6 @@
 - name: Clone vital projects
   git:
-    repo: '{{item.repo}}'
+    repo: '{{ item.repo }}'
     dest: /home/{{ millennium_falcon.pilot }}/Projects/{{ item.name }}
     version: master
     accept_hostkey: true
