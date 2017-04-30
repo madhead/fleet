@@ -8,6 +8,15 @@
     - .config/kcminputrc
     - .config/ksplashrc
     - .config/kwinrc
+    - .config/kscreenlockerrc
+    - .config/kaccessrc
+    - .config/kactivitymanagerd-pluginsrc
+    - .config/kactivitymanagerdrc
+    - .config/breezerc
+    - .config/oxygenrc
+    - .gtkrc-2.0
+    - .gtkrc-2.0-kde4
+    - .config/gtk-3.0/settings.ini
     - .kde4/share/apps/color-schemes/Breath.colors
     - .kde4/share/apps/color-schemes/Maia Dark.colors
     - .kde4/share/apps/color-schemes/Maia.colors
