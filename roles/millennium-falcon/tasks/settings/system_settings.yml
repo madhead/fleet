@@ -5,6 +5,7 @@
   with_items:
     - .config/kdeglobals
     - .config/plasmarc
+    - .config/kxkbrc
     - .config/kcminputrc
     - .config/ksplashrc
     - .config/kwinrc
