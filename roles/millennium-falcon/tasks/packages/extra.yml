@@ -13,6 +13,7 @@
     - cowsay
     - gimp
     - inkscape
+    - blender
     - kdiff3
     - krusader
     - kstars
@@ -33,6 +34,7 @@
     - google-chrome
     - saberlight-git
     - whatpulse
+    - anki
   become: false
 - name: Remove unneeded packages
   pacman:
