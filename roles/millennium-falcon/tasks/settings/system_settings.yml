@@ -14,6 +14,11 @@
     - .config/kactivitymanagerdrc
     - .config/breezerc
     - .config/oxygenrc
+    - .config/kglobalshortcutsrc
+    - .config/khotkeysrc
+    - .config/kuriikwsfilterrc
+    - .config/baloofilerc
+    - .config/krunnerrc
     - .gtkrc-2.0
     - .gtkrc-2.0-kde4
     - .config/gtk-3.0/settings.ini
