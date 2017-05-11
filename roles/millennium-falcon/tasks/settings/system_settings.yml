@@ -21,6 +21,7 @@
     - .config/baloofilerc
     - .config/krunnerrc
     - .config/powermanagementprofilesrc
+    - .config/plasma-org.kde.plasma.desktop-appletsrc
     - .config/bluedevil.notifyrc
     - .config/digikam.notifyrc
     - .config/freespacenotifier.notifyrc
