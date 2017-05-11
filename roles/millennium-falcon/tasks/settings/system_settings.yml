@@ -19,6 +19,32 @@
     - .config/kuriikwsfilterrc
     - .config/baloofilerc
     - .config/krunnerrc
+    - .config/powermanagementprofilesrc
+    - .config/bluedevil.notifyrc
+    - .config/digikam.notifyrc
+    - .config/freespacenotifier.notifyrc
+    - .config/k3b.notifyrc
+    - .config/kaccess.notifyrc
+    - .config/kcm_touchpad.notifyrc
+    - .config/kdeconnect.notifyrc
+    - .config/kdenlive.notifyrc
+    - .config/konsole.notifyrc
+    - .config/konversation.notifyrc
+    - .config/ksmserver.notifyrc
+    - .config/kstars.notifyrc
+    - .config/ksysguard.notifyrc
+    - .config/ktorrent.notifyrc
+    - .config/kwalletd.notifyrc
+    - .config/kwin.notifyrc
+    - .config/kwrited.notifyrc
+    - .config/networkmanagement.notifyrc
+    - .config/phonon.notifyrc
+    - .config/plasma_workspace.notifyrc
+    - .config/policykit1-kde.notifyrc
+    - .config/powerdevil.notifyrc
+    - .config/printmanager.notifyrc
+    - .config/proxyscout.notifyrc
+    - .config/spectacle.notifyrc
     - .gtkrc-2.0
     - .gtkrc-2.0-kde4
     - .config/gtk-3.0/settings.ini
