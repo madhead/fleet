@@ -1,13 +1,13 @@
-- name: 'Settings :: System Settings :: {{ item }} :: Check'
+- name: 'dotfile :: {{ item }} :: Check'
   stat:
     path: /home/{{ millennium_falcon.pilot }}/{{ item }}
   register: stat
-- name: 'Settings :: System Settings :: {{ item }} :: Remove default config'
+- name: 'dotfile :: {{ item }} :: Remove default config'
   file:
     path: /home/{{ millennium_falcon.pilot }}/{{ item }}
     state: absent
   when: (stat.stat.exists == true) and ((stat.stat.islnk == false) or (stat.stat.lnk_source != '/home/' + millennium_falcon.pilot + '/Projects/cfg/home/' + item))
-- name: 'Settings :: System Settings :: {{ item }} :: Configure'
+- name: 'dotfile :: {{ item }} :: Configure'
   file:
     dest: /home/{{ millennium_falcon.pilot }}/{{ item }}
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/home/{{ item }}
