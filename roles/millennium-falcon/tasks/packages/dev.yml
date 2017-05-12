@@ -21,4 +21,5 @@
   with_items:
     - heroku-toolbelt
     - nvm #TODO: add to PATH
+    - jetbrains-toolbox
   become: false
