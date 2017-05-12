@@ -15,7 +15,7 @@
     backup: yes
 - name: Link .zshrc for root and pilot
   file:
-    src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/shell/.zshrc
+    src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/home/.zshrc
     dest: "{{ item.home }}/.zshrc"
     state: link
     force: true

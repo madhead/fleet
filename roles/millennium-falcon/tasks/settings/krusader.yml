@@ -1,0 +1,3 @@
+  - include: dotfile_file.yml
+    with_items:
+      - .local/share/kxmlgui5/krusader/krusaderui.rc

@@ -17,3 +17,7 @@
 - include: konsole.yml
   tags:
     - konsole-settings
+
+- include: krusader.yml
+  tags:
+    - krusader-settings
