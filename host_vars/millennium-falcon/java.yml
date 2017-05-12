@@ -9,4 +9,4 @@ java:
 
   single_installation: true # Keep other Java distributions or remove them?
 
-  install_directory: /opt/tools/java
+  install_directory: /opt/java
