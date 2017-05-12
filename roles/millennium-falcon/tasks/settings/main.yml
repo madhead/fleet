@@ -5,3 +5,7 @@
 - include: atom.yml
   tags:
     - atom-settings
+
+- include: zsh.yml
+  tags:
+    - zsh-settings
