@@ -9,3 +9,11 @@
 - include: zsh.yml
   tags:
     - zsh-settings
+
+- include: git.yml
+  tags:
+    - git-settings
+
+- include: konsole.yml
+  tags:
+    - konsole-settings

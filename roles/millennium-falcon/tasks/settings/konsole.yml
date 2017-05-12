@@ -1,0 +1,6 @@
+- include: dotfile_file.yml
+  with_items:
+    - .local/share/konsole/Zsh.profile
+    - .local/share/konsole/Bash.profile
+    - .local/share/konsole/GreenOnBlack.colorscheme
+    - .local/share/kxmlgui5/konsole/konsoleui.rc
