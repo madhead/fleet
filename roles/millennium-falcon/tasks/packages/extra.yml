@@ -28,6 +28,7 @@
     - bind-tools
     - keepass
     - aspell-en
+    - xdotool
 - name: Install extra packages
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
