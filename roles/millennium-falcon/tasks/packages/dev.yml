@@ -1,7 +1,7 @@
-- name: Update pacman cache
+- name: 'Packages : Dev : Update Pacman cache'
   pacman:
     update_cache: true
-- name: Install dev packages
+- name: 'Packages : Dev : Install packages'
   pacman:
     name: "{{ item }}"
     state: latest
@@ -16,7 +16,7 @@
     - virtualbox
     - nodejs
     - npm
-- name: Install dev packages
+- name: 'Packages : Dev : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
     - heroku-toolbelt

@@ -1,4 +1,4 @@
-- include: system_settings.yml
+- include: system.yml
   tags:
     - system-settings
 

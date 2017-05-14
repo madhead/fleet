@@ -1,8 +1,13 @@
-- name: 'Settings :: Atom :: Remove default keymap'
+- name: 'Settings : Atom : Check keymap configuration'
+  stat:
+    path: /home/{{ millennium_falcon.pilot }}/.atom/keymap.cson
+  register: stat
+- name: 'Settings : Atom : Remove default keymap configuration'
   file:
     path: /home/{{ millennium_falcon.pilot }}/.atom/keymap.cson
     state: absent
-- name: 'Settings :: Atom :: Configure keymap'
+  when: (stat.stat.exists == true) and ((stat.stat.islnk == false) or (stat.stat.lnk_source != '/home/' + millennium_falcon.pilot + '/Projects/cfg/atom/keymap.cson'))
+- name: 'Settings : Atom : Configure keymap'
   file:
     dest: /home/{{ millennium_falcon.pilot }}/.atom/keymap.cson
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/atom/keymap.cson

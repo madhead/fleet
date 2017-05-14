@@ -1,7 +1,7 @@
-- name: Update pacman cache
+- name: 'Packages : Extra : Update Pacman cache'
   pacman:
     update_cache: true
-- name: Install extra packages
+- name: 'Packages : Extra : Install packages'
   pacman:
     name: "{{ item }}"
     state: latest
@@ -29,7 +29,7 @@
     - keepass
     - aspell-en
     - xdotool
-- name: Install extra packages
+- name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
     - google-chrome
@@ -37,7 +37,7 @@
     - whatpulse
     - anki
   become: false
-- name: Remove unneeded packages
+- name: 'Packages : Extra : Remove unused packages'
   pacman:
     name: "{{ item }}"
     state: absent

@@ -1,7 +1,7 @@
-- name: Update pacman cache
+- name: 'Packages : Base : Update Pacman cache'
   pacman:
     update_cache: true
-- name: Install base packages
+- name: 'Packages : Base : Install packages'
   pacman:
     name: "{{ item }}"
     state: latest

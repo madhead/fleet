@@ -1,11 +1,11 @@
-- name: Set Zsh as a shell for root and pilot
+- name: 'Settings : zsh : Set zsh as a shell for root and pilot'
   user:
     name: "{{ item }}"
     shell: /bin/zsh
   with_items:
     - root
     - '{{ millennium_falcon.pilot }}'
-- name: Ensure Zsh reads /etc/profile
+- name: 'Settings : zsh : Ensure zsh reads /etc/profile'
   template:
     src: zprofile.j2
     dest: /etc/zsh/zprofile
@@ -13,7 +13,7 @@
     group: root
     mode: 0644
     backup: yes
-- name: Link .zshrc for root and pilot
+- name: 'Settings : zsh : Link .zshrc for root and pilot'
   file:
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/home/.zshrc
     dest: "{{ item.home }}/.zshrc"
@@ -26,7 +26,7 @@
       home: /home/{{ millennium_falcon.pilot }}
     - user: root
       home: /root
-- name: Set up .zshenv for root and pilot
+- name: 'Settings : zsh : Set up .zshenv for root and pilot'
   lineinfile:
     dest: "{{ item.home }}/.zshenv"
     line: "ZSH=/home/{{ millennium_falcon.pilot }}/Projects/oh-my-zsh"

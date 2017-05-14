@@ -1,10 +1,10 @@
-- name: Create /home/{{ millennium_falcon.pilot }}/{{ item }} directory
+- name: 'Home : Create /home/{{ millennium_falcon.pilot }}/{{ item }} directory'
   file:
     path: /home/{{ millennium_falcon.pilot }}/{{ item }}
     owner: "{{ millennium_falcon.pilot }}"
     group: "{{ millennium_falcon.crew }}"
     state: directory
-- name: Create /home/{{ millennium_falcon.pilot }}/{{ item }}/.directory file
+- name: 'Home : Create /home/{{ millennium_falcon.pilot }}/{{ item }}/.directory file'
   copy:
     src: ../files/home/{{ item }}.directory
     dest: /home/{{ millennium_falcon.pilot }}/{{ item }}/.directory

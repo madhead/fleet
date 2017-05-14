@@ -1,12 +1,15 @@
 - include: packages/main.yml
   tags:
     - packages
+
 - include: home/main.yml
   tags:
     - home
+
 - include: projects/main.yml
   tags:
     - projects
+
 - include: settings/main.yml
   tags:
     - settings

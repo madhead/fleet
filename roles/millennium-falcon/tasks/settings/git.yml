@@ -2,7 +2,7 @@
   with_items:
     - .gitconfig-aliases
 
-- name: Ensure Zsh reads /etc/profile
+- name: 'Settings : Git : Ensure aliases are included in .gitconfig'
   blockinfile:
     dest: /home/{{ millennium_falcon.pilot }}/.gitconfig
     block: |

@@ -13,7 +13,7 @@
       become: true
       become_user: root
       tags:
-        - base
+        - millennium-falcon
     - role: java
       become: true
       become_user: root

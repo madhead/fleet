@@ -1,4 +1,4 @@
-- name: 'Settings :: System Settings :: Manjaro :: Time and Date :: Set time and date automatically'
+- name: 'Settings : System : Set time and date automatically'
   command: timedatectl set-ntp true
 
 - include: dotfile_file.yml
