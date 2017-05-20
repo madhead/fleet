@@ -36,6 +36,7 @@
     - saberlight-git
     - whatpulse
     - anki
+    - hugo-bin
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:
