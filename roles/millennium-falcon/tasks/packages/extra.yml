@@ -37,6 +37,7 @@
     - whatpulse
     - anki
     - hugo-bin
+    - ruby-travis
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:
