@@ -38,6 +38,7 @@
     - anki
     - hugo-bin
     - ruby-travis
+    - robocut
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:
