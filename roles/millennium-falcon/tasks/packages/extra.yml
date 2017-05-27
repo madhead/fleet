@@ -29,6 +29,7 @@
     - keepass
     - aspell-en
     - xdotool
+    - youtube-dl
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
