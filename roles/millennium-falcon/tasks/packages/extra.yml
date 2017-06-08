@@ -30,6 +30,7 @@
     - aspell-en
     - xdotool
     - youtube-dl
+    - krename
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
@@ -38,7 +39,6 @@
     - whatpulse
     - anki
     - hugo-bin
-    - ruby-travis
     - robocut
   become: false
 - name: 'Packages : Extra : Remove unused packages'
