@@ -22,6 +22,7 @@
     - heroku-toolbelt
     - nvm
     - jetbrains-toolbox
+    - chef-dk
   become: false
 - name: 'Packages : Dev : Install RVM'
   include_role:
