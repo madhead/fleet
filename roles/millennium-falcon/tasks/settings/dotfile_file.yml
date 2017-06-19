@@ -7,6 +7,12 @@
     path: /home/{{ millennium_falcon.pilot }}/{{ item }}
     state: absent
   when: (stat.stat.exists == true) and ((stat.stat.islnk == false) or (stat.stat.lnk_source != '/home/' + millennium_falcon.pilot + '/Projects/cfg/home/' + item))
+- name: 'Settings : {{ item }} : Create directory if needed'
+  file:
+    dest: /home/{{ millennium_falcon.pilot }}/{{ item | dirname }}
+    owner: "{{ millennium_falcon.pilot }}"
+    group: "{{ millennium_falcon.crew }}"
+    state: directory
 - name: 'Settings : {{ item }} : Configure'
   file:
     dest: /home/{{ millennium_falcon.pilot }}/{{ item }}

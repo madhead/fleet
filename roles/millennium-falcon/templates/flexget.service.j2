@@ -1,0 +1,11 @@
+[Unit]
+Description=FlexGet Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/flexget daemon start
+ExecStop=/usr/bin/flexget daemon stop
+ExecReload=/usr/bin/flexget daemon reload
+
+[Install]
+WantedBy=default.target

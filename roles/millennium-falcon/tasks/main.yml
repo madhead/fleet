@@ -13,3 +13,7 @@
 - include: settings/main.yml
   tags:
     - settings
+
+- include: flexget/main.yml
+  tags:
+    - flexget
