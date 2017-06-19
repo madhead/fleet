@@ -23,6 +23,7 @@
     - wireshark-qt
     - strace
     - rclone
+    - ktorrent
     - tig
     - bind-tools
     - keepass
@@ -30,8 +31,6 @@
     - xdotool
     - youtube-dl
     - krename
-    - kde-syndication
-    - kdewebkit
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
@@ -41,7 +40,6 @@
     - anki
     - hugo-bin
     - robocut
-    - ktorrent-git
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:
