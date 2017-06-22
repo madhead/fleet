@@ -3,7 +3,7 @@
     update_cache: true
 - name: 'Packages : Games : Install packages'
   pacman:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: latest
   with_items:
     - 0ad

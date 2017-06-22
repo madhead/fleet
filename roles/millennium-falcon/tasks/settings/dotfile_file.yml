@@ -10,13 +10,13 @@
 - name: 'Settings : {{ item }} : Create directory if needed'
   file:
     dest: /home/{{ millennium_falcon.pilot }}/{{ item | dirname }}
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
     state: directory
 - name: 'Settings : {{ item }} : Configure'
   file:
     dest: /home/{{ millennium_falcon.pilot }}/{{ item }}
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/home/{{ item }}
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
     state: link

@@ -3,7 +3,7 @@
     update_cache: true
 - name: 'Packages : Extra : Install packages'
   pacman:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: latest
   with_items:
     - amarok
@@ -50,7 +50,7 @@
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: absent
   with_items:
     - yakuake

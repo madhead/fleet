@@ -8,6 +8,6 @@
     block: |
       [include]
           path = .gitconfig-aliases
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
     mode: 0644

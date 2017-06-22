@@ -11,8 +11,8 @@
   file:
     dest: /home/{{ millennium_falcon.pilot }}/.atom/keymap.cson
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/atom/keymap.cson
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
     state: link
 # TODO: Install packages and themes
 # TODO: Configs?

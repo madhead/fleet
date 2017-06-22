@@ -3,7 +3,7 @@
     update_cache: true
 - name: 'Packages : Base : Install packages'
   pacman:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: latest
   with_items:
     - zsh

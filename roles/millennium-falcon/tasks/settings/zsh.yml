@@ -1,6 +1,6 @@
 - name: 'Settings : zsh : Set zsh as a shell for root and pilot'
   user:
-    name: "{{ item }}"
+    name: '{{ item }}'
     shell: /bin/zsh
   with_items:
     - root
@@ -16,11 +16,11 @@
 - name: 'Settings : zsh : Link .zshrc for root and pilot'
   file:
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/home/.zshrc
-    dest: "{{ item.home }}/.zshrc"
+    dest: '{{ item.home }}/.zshrc'
     state: link
     force: true
-    owner: "{{ item.user }}"
-    group: "{{ item.user }}"
+    owner: '{{ item.user }}'
+    group: '{{ item.user }}'
   with_items:
     - user: '{{ millennium_falcon.pilot }}'
       home: /home/{{ millennium_falcon.pilot }}
@@ -28,11 +28,11 @@
       home: /root
 - name: 'Settings : zsh : Set up .zshenv for root and pilot'
   lineinfile:
-    dest: "{{ item.home }}/.zshenv"
-    line: "ZSH=/home/{{ millennium_falcon.pilot }}/Projects/oh-my-zsh"
+    dest: '{{ item.home }}/.zshenv'
+    line: ZSH=/home/{{ millennium_falcon.pilot }}/Projects/oh-my-zsh
     create: true
-    owner: "{{ item.user }}"
-    group: "{{ item.user }}"
+    owner: '{{ item.user }}'
+    group: '{{ item.user }}'
   with_items:
     - user: '{{ millennium_falcon.pilot }}'
       home: /home/{{ millennium_falcon.pilot }}

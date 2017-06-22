@@ -3,7 +3,7 @@
     update_cache: true
 - name: 'Packages : Dev : Install packages'
   pacman:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: latest
   with_items:
     - ansible
@@ -35,8 +35,8 @@
   blockinfile:
     path: /home/{{ millennium_falcon.pilot }}/.zshrc-local
     create: true
-    owner: "{{ millennium_falcon.pilot }}"
-    group: "{{ millennium_falcon.crew }}"
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
     block: |
       source /usr/share/nvm/init-nvm.sh
       source /home/{{ millennium_falcon.pilot }}/.rvm/scripts/rvm
