@@ -14,5 +14,5 @@
   copy:
     src: timezone
     dest: /etc/timezone
-  notify:
-  - Update tzdata
+- name: Update tzdata
+  command: /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata

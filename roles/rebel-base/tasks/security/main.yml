@@ -17,6 +17,8 @@
     mode: 0644
     backup: yes
     validate: /usr/sbin/sshd -T -f %s
-  notify:
-  - Restart SSH
+- name: Restart SSH
+  service:
+    name: ssh
+    state: restarted
   when: not docker
