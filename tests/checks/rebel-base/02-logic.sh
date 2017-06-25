@@ -16,8 +16,8 @@ container_id=$(
 
 docker exec \
   "${container_id}" \
-  /usr/bin/ansible-playbook /tmp/checks/remote-init/remote-init.yml
+  /usr/bin/ansible-playbook /tmp/checks/rebel-base/rebel-base.yml
 
 docker exec \
   "${container_id}" \
-  /usr/bin/bats /tmp/checks/remote-init/logic.bats
+  /usr/bin/bats /tmp/checks/rebel-base/logic.bats

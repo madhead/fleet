@@ -6,4 +6,4 @@
     - debug:
         msg: "Running on Docker?: {{ docker }}"
   roles:
-    - role: remote-init
+    - role: rebel-base

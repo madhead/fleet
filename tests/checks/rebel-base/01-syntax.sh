@@ -10,4 +10,4 @@ docker run \
   --volume="${PWD}/roles":/etc/ansible/roles:ro \
   --volume="${PWD}/tests/checks":/tmp/checks:ro \
   ${distribution}:${version}.ansible \
-  /usr/bin/ansible-playbook --syntax-check /tmp/checks/remote-init/remote-init.yml 1> /dev/null
+  /usr/bin/ansible-playbook --syntax-check /tmp/checks/rebel-base/rebel-base.yml 1> /dev/null

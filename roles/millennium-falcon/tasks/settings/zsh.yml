@@ -1,4 +1,4 @@
-- name: 'Settings : zsh : Set zsh as a shell for root and pilot'
+- name: 'Settings : zsh : Set zsh as a shell for root and {{ millennium_falcon.pilot }}'
   user:
     name: '{{ item }}'
     shell: /bin/zsh
@@ -13,7 +13,7 @@
     group: root
     mode: 0644
     backup: yes
-- name: 'Settings : zsh : Link .zshrc for root and pilot'
+- name: 'Settings : zsh : Link .zshrc for root and {{ millennium_falcon.pilot }}'
   file:
     src: /home/{{ millennium_falcon.pilot }}/Projects/cfg/home/.zshrc
     dest: '{{ item.home }}/.zshrc'
@@ -26,7 +26,7 @@
       home: /home/{{ millennium_falcon.pilot }}
     - user: root
       home: /root
-- name: 'Settings : zsh : Set up .zshenv for root and pilot'
+- name: 'Settings : zsh : Set up .zshenv for root and {{ millennium_falcon.pilot }}'
   lineinfile:
     dest: '{{ item.home }}/.zshenv'
     line: ZSH=/home/{{ millennium_falcon.pilot }}/Projects/oh-my-zsh

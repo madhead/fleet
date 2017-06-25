@@ -1,18 +1,18 @@
-- name: Create pilot user
+- name: Create {{ millennium_falcon.pilot }} user
   user:
     name: '{{ millennium_falcon.pilot }}'
     password: '{{ "password" | password_hash("sha512") }}'
     update_password: on_create
   register: pilot
-- name: Force pilot to change password
+- name: Force {{ millennium_falcon.pilot }} to change password
   shell: chage -d 0 {{ millennium_falcon.pilot }}
   when: pilot.changed
-- name: Upload SSH key for pilot
+- name: Upload SSH key for {{ millennium_falcon.pilot }}
   authorized_key:
     user: '{{ millennium_falcon.pilot }}'
     key: '{{ lookup("file", "/home/" + millennium_falcon.pilot + "/.ssh/id_ecdsa.pub") }}'
   when: not docker
-- name: Set Zsh as a shell for root and pilot
+- name: Set Zsh as a shell for root and {{ millennium_falcon.pilot }}
   user:
     name: '{{ item }}'
     shell: /bin/zsh
@@ -50,7 +50,7 @@
   with_items:
     - oh-my-zsh
     - cfg
-- name: Link .zshrc for root and pilot
+- name: Link .zshrc for root and {{ millennium_falcon.pilot }}
   file:
     src: /home/{{ millennium_falcon.pilot }}/projects/cfg/home/.zshrc
     dest: '{{ item.home }}/.zshrc'
@@ -63,7 +63,7 @@
       home: /home/{{ millennium_falcon.pilot }}
     - user: root
       home: /root
-- name: Set up .zshenv for root and pilot
+- name: Set up .zshenv for root and {{ millennium_falcon.pilot }}
   lineinfile:
     dest: '{{ item.home }}/.zshenv'
     line: 'ZSH=/home/{{ millennium_falcon.pilot }}/projects/oh-my-zsh'
@@ -82,7 +82,7 @@
     owner: root
     group: root
     mode: 0755
-- name: Add pilot to sudoers
+- name: Add {{ millennium_falcon.pilot }} to sudoers
   template:
     src: pilot.sudoers.j2
     dest: /etc/sudoers.d/{{ millennium_falcon.pilot }}

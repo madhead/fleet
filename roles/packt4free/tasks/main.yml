@@ -24,7 +24,7 @@
     state: link
     owner: root
     group: root
-- name: Check if pilot user exists
+- name: Check if {{ millennium_falcon.pilot }} user exists
   action: shell /usr/bin/getent passwd {{ millennium_falcon.pilot }} | /usr/bin/wc -l | tr -d ' '
   register: pilot_exists
 - name: Ensure user's bin directory exists

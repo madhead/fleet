@@ -7,7 +7,7 @@
 }
 
 @test "Ensure /opt/java/java is a correct symlink" {
-  [[ $(readlink /opt/java/java) == "/opt/java/jdk1.8.0_91" ]]
+  [[ $(readlink /opt/java/java) == "/opt/java/jdk1.8.0_131" ]]
 }
 
 @test "Java must be installed" {
@@ -27,5 +27,5 @@
 }
 
 @test "Ensure temporary file was removed" {
-  [[ ! -f /tmp/jdk-8u91-linux-x64.tar.gz ]]
+  [[ ! -f /tmp/jdk-8u131-linux-x64.tar.gz ]]
 }
