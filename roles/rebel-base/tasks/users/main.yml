@@ -1,20 +1,20 @@
 - name: Create pilot user
   user:
     name: '{{ millennium_falcon.pilot }}'
-    password: "{{ 'password' | password_hash('sha512') }}"
+    password: '{{ "password" | password_hash("sha512") }}'
     update_password: on_create
   register: pilot
 - name: Force pilot to change password
   shell: chage -d 0 {{ millennium_falcon.pilot }}
   when: pilot.changed
-- name: Upload SSH key for madhead
+- name: Upload SSH key for pilot
   authorized_key:
     user: '{{ millennium_falcon.pilot }}'
-    key: "{{ lookup('file', '/home/' + millennium_falcon.pilot + '/.ssh/id_ecdsa.pub') }}"
+    key: '{{ lookup("file", "/home/" + millennium_falcon.pilot + "/.ssh/id_ecdsa.pub") }}'
   when: not docker
 - name: Set Zsh as a shell for root and pilot
   user:
-    name: "{{ item }}"
+    name: '{{ item }}'
     shell: /bin/zsh
   with_items:
     - root
@@ -27,22 +27,22 @@
     group: root
     mode: 0644
     backup: yes
-- name: Ensure /home/madhead/projects directory exists
+- name: Ensure /home/{{ millennium_falcon.pilot }}/projects directory exists
   file:
-    path: /home/madhead/projects
+    path: /home/{{ millennium_falcon.pilot }}/projects
     state: directory
     owner: '{{ millennium_falcon.pilot }}'
     group: '{{ millennium_falcon.crew }}'
 - name: Clone Oh My Zsh and configs
   git:
     repo: https://github.com/madhead/{{ item }}.git
-    dest: /home/madhead/projects/{{ item }}
+    dest: /home/{{ millennium_falcon.pilot }}/projects/{{ item }}
   with_items:
     - oh-my-zsh
     - cfg
 - name: Force ownership for Oh My Zsh and configs
   file:
-    path: /home/madhead/projects/{{ item }}
+    path: /home/{{ millennium_falcon.pilot }}/projects/{{ item }}
     state: directory
     recurse: true
     owner: '{{ millennium_falcon.pilot }}'
@@ -50,29 +50,29 @@
   with_items:
     - oh-my-zsh
     - cfg
-- name: Link .zshrc for root and madhead
+- name: Link .zshrc for root and pilot
   file:
-    src: /home/madhead/projects/cfg/shell/.zshrc
-    dest: "{{ item.home }}/.zshrc"
+    src: /home/{{ millennium_falcon.pilot }}/projects/cfg/home/.zshrc
+    dest: '{{ item.home }}/.zshrc'
     state: link
     force: true
-    owner: "{{ item.user }}"
-    group: "{{ item.user }}"
+    owner: '{{ item.user }}'
+    group: '{{ item.user }}'
   with_items:
-    - user: madhead
-      home: /home/madhead
+    - user: '{{ millennium_falcon.pilot }}'
+      home: /home/{{ millennium_falcon.pilot }}
     - user: root
       home: /root
-- name: Set up .zshenv for root and madhead
+- name: Set up .zshenv for root and pilot
   lineinfile:
-    dest: "{{ item.home }}/.zshenv"
-    line: "ZSH=/home/madhead/projects/oh-my-zsh"
+    dest: '{{ item.home }}/.zshenv'
+    line: 'ZSH=/home/{{ millennium_falcon.pilot }}/projects/oh-my-zsh'
     create: true
-    owner: "{{ item.user }}"
-    group: "{{ item.user }}"
+    owner: '{{ item.user }}'
+    group: '{{ item.user }}'
   with_items:
-    - user: madhead
-      home: /home/madhead
+    - user: '{{ millennium_falcon.pilot }}'
+      home: /home/{{ millennium_falcon.pilot }}
     - user: root
       home: /root
 - name: Ensure sudoers.d directory exists
@@ -82,7 +82,7 @@
     owner: root
     group: root
     mode: 0755
-- name: Add madhead to sudoers
+- name: Add pilot to sudoers
   template:
     src: pilot.sudoers.j2
     dest: /etc/sudoers.d/{{ millennium_falcon.pilot }}

@@ -12,4 +12,4 @@
 
 - include: security/main.yml
   tags:
-    - users
+    - security
