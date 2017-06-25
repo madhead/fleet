@@ -2,12 +2,10 @@
   ufw:
     state: enabled
     policy: deny
-  when: not docker
 - name: Allow SSH connections
   ufw:
     rule: allow
     port: 22
-  when: not docker
 - name: Tune SSH
   template:
     src: sshd_config.j2
@@ -21,4 +19,3 @@
   service:
     name: ssh
     state: restarted
-  when: not docker

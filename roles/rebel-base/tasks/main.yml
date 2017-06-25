@@ -13,3 +13,4 @@
 - include: security/main.yml
   tags:
     - security
+  when: not docker
