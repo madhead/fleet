@@ -61,13 +61,13 @@
 }
 
 @test ".zshrc must be configured for madhead" {
-  [[ $(readlink /home/madhead/.zshrc) == "/home/madhead/projects/cfg/shell/.zshrc" ]]
+  [[ $(readlink /home/madhead/.zshrc) == "/home/madhead/projects/cfg/home/.zshrc" ]]
   [[ $(stat -c "%U" /home/madhead/.zshrc) == "madhead" ]]
   [[ $(stat -c "%G" /home/madhead/.zshrc) == "madhead" ]]
 }
 
 @test ".zshrc must be configured for root" {
-  [[ $(readlink /root/.zshrc) == "/home/madhead/projects/cfg/shell/.zshrc" ]]
+  [[ $(readlink /root/.zshrc) == "/home/madhead/projects/cfg/home/.zshrc" ]]
   [[ $(stat -c "%U" /root/.zshrc) == "root" ]]
   [[ $(stat -c "%G" /root/.zshrc) == "root" ]]
 }
