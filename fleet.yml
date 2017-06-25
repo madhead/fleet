@@ -2,18 +2,18 @@
 
 ---
 - name: Configure Alvotech hosts
-  hosts: alvotech
+  hosts: fleet
   pre_tasks:
     - set_fact:
         docker: "{{ ansible_virtualization_type is defined and ansible_virtualization_type == 'docker' and ansible_virtualization_role == 'guest' }}"
     - debug:
         msg: "Running on Docker?: {{ docker }}"
   roles:
-    - role: remote-init
+    - role: rebel-base
       become: true
       become_user: root
       tags:
-        - init
+        - rebel-base
     - role: java
       become: true
       become_user: root

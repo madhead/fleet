@@ -1,47 +1,24 @@
-- name: Set hostname from inventory
-  hostname:
-    name: "{{ inventory_hostname }}"
-  when: not docker
-- name: Fix /etc/hosts
-  template:
-    src: hosts.j2
-    dest: /etc/hosts
-    owner: root
-    group: root
-    mode: 0644
-  when: not docker
-- name: Install base packages
-  apt:
-    name: "{{ item }}"
-    update_cache: true
-    state: latest
-    cache_valid_time: 86400
-  with_items:
-    - zsh
-    - git
-    - vim
-    - unzip
-- name: Create madhead user
+- name: Create pilot user
   user:
-    name: madhead
+    name: '{{ millennium_falcon.pilot }}'
     password: "{{ 'password' | password_hash('sha512') }}"
     update_password: on_create
-  register: madhead
-- name: Force madhead to change password
-  shell: chage -d 0 madhead
-  when: madhead.changed
+  register: pilot
+- name: Force pilot to change password
+  shell: chage -d 0 {{ millennium_falcon.pilot }}
+  when: pilot.changed
 - name: Upload SSH key for madhead
   authorized_key:
-    user: madhead
-    key: "{{ lookup('file', '/home/madhead/.ssh/id_ecdsa.pub') }}"
+    user: '{{ millennium_falcon.pilot }}'
+    key: "{{ lookup('file', '/home/' + millennium_falcon.pilot + '/.ssh/id_ecdsa.pub') }}"
   when: not docker
-- name: Set Zsh as a shell for root and madhead
+- name: Set Zsh as a shell for root and pilot
   user:
     name: "{{ item }}"
     shell: /bin/zsh
   with_items:
     - root
-    - madhead
+    - '{{ millennium_falcon.pilot }}'
 - name: Ensure Zsh reads /etc/profile
   template:
     src: zprofile.j2
@@ -54,8 +31,8 @@
   file:
     path: /home/madhead/projects
     state: directory
-    owner: madhead
-    group: madhead
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
 - name: Clone Oh My Zsh and configs
   git:
     repo: https://github.com/madhead/{{ item }}.git
@@ -68,8 +45,8 @@
     path: /home/madhead/projects/{{ item }}
     state: directory
     recurse: true
-    owner: madhead
-    group: madhead
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
   with_items:
     - oh-my-zsh
     - cfg
@@ -106,38 +83,10 @@
     group: root
     mode: 0755
 - name: Add madhead to sudoers
-  copy:
-    src: madhead.sudoers
-    dest: /etc/sudoers.d/madhead
+  template:
+    src: pilot.sudoers.j2
+    dest: /etc/sudoers.d/{{ millennium_falcon.pilot }}
     owner: root
     group: root
     mode: 0440
     validate: visudo -cf %s
-- name: Close all ports
-  ufw:
-    state: enabled
-    policy: deny
-  when: not docker
-- name: Allow SSH connections
-  ufw:
-    rule: allow
-    port: 22
-  when: not docker
-- name: Tune SSH
-  template:
-    src: sshd_config.j2
-    dest: /etc/ssh/sshd_config
-    owner: root
-    group: root
-    mode: 0644
-    backup: yes
-    validate: /usr/sbin/sshd -T -f %s
-  notify:
-  - Restart SSH
-  when: not docker
-- name: Force UTC timezone
-  copy:
-    src: timezone
-    dest: /etc/timezone
-  notify:
-  - Update tzdata

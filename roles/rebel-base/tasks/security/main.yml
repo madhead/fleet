@@ -1,0 +1,22 @@
+- name: Close all ports
+  ufw:
+    state: enabled
+    policy: deny
+  when: not docker
+- name: Allow SSH connections
+  ufw:
+    rule: allow
+    port: 22
+  when: not docker
+- name: Tune SSH
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+    validate: /usr/sbin/sshd -T -f %s
+  notify:
+  - Restart SSH
+  when: not docker
