@@ -24,3 +24,8 @@
       become_user: root
       tags:
         - packt4free
+    - role: telek-ansible-role
+      become: true
+      become_user: root
+      tags:
+        - telek
