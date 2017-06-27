@@ -7,7 +7,7 @@
 }
 
 @test "Ensure /opt/packt4free/packt4free is a correct symlink" {
-  [[ $(readlink /opt/packt4free/packt4free) == "/opt/packt4free/packt4free-1.2.0" ]]
+  [[ $(readlink /opt/packt4free/packt4free) == "/opt/packt4free/packt4free-1.2.2" ]]
 }
 
 @test "Ensure /home/madhead/bin is a directory" {

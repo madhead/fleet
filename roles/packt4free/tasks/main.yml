@@ -1,6 +1,6 @@
 - name: Download packt4free distribution
   get_url:
-    url: https://dl.bintray.com/madhead/madhead/packt4free-{{ packt4free.version }}.zip
+    url: https://dl.bintray.com/madhead/applications/packt4free-{{ packt4free.version }}.zip
     dest: /tmp/packt4free-{{ packt4free.version }}.zip
 - name: Create required directories
   file:
