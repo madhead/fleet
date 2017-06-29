@@ -6,8 +6,12 @@
   pre_tasks:
     - set_fact:
         docker: "{{ ansible_virtualization_type is defined and ansible_virtualization_type == 'docker' and ansible_virtualization_role == 'guest' }}"
+      tags:
+        - always
     - debug:
         msg: "Running on Docker?: {{ docker }}"
+      tags:
+        - always
   roles:
     - role: rebel-base
       become: true
