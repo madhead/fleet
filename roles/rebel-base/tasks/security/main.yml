@@ -15,6 +15,13 @@
     mode: 0644
     backup: yes
     validate: /usr/sbin/sshd -T -f %s
+- name: Add Travis CI key for {{ millennium_falcon.pilot }}
+  authorized_key:
+    user: '{{ millennium_falcon.pilot }}'
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - travis_ecdsa.pub
 - name: Restart SSH
   service:
     name: ssh
