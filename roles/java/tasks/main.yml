@@ -33,6 +33,8 @@
     owner: root
     group: root
     mode: 0755
+  tags:
+    - java_env
 - name: Remove temporary file
   when: global.clean_tmp
   file:
@@ -40,6 +42,6 @@
     state: absent
 - name: Keep single Java version
   when: java.single_installation
-  shell: "find . -maxdepth 1 -and \\( -not -name java -and -not -name {{ (unpacked.files[0] + '/') | dirname }} -and \\( -type f -or -type d -or -type l \\) \\) -exec rm -r \"{}\" \\;"
+  shell: "find . -maxdepth 1 -and \\( -not -name java -and -not -name {{ (unpacked.files[0] + '/') | dirname }} -and -name '*java*'  -and \\( -type f -or -type d -or -type l \\) \\) -exec rm -r \"{}\" \\;"
   args:
     chdir: '{{ java.install_directory }}'
