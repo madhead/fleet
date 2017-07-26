@@ -47,6 +47,7 @@
     - python2-terminaltables
     - python2-zxcvbn
     - flexget
+    - snx
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:
