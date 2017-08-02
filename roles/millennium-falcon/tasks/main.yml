@@ -17,3 +17,7 @@
 - include: flexget/main.yml
   tags:
     - flexget
+
+- include: maestro/main.yml
+  tags:
+    - maestro

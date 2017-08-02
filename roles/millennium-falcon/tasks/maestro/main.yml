@@ -1,0 +1,39 @@
+- name: 'Maestro : Download distribution'
+  get_url:
+    url: https://cloud.epam.com/site/develop/maestro_c=l=i/maestro-cli.zip
+    dest: /tmp/maestro-cli.zip
+- name: 'Maestro : Remove previous version'
+  file:
+    path: '{{ maestro.install_directory }}'
+    state: absent
+- name: 'Maestro : Prepare installation directory'
+  file:
+    path: '{{ maestro.install_directory }}'
+    owner: root
+    group: root
+    state: directory
+- name: 'Maestro : Unpack distribution'
+  unarchive:
+    src: /tmp/maestro-cli.zip
+    dest: '{{ maestro.install_directory }}'
+    copy: false
+    owner: root
+    group: root
+- name: 'Maestro : Move distribution'
+  shell: mv {{ maestro.install_directory }}/maestro-cli/* {{ maestro.install_directory }}
+- name: 'Maestro : Remove useless directory'
+  file:
+    path: '{{ maestro.install_directory }}/maestro-cli'
+    state: absent
+- name: 'Maestro : Create environment entry for MAESTRO_CLI_HOME'
+  template:
+    src: maestro.sh.j2
+    dest: /etc/profile.d/maestro.sh
+    owner: root
+    group: root
+    mode: 0755
+- name: 'Maestro : Remove temporary file'
+  when: global.clean_tmp
+  file:
+    path: /tmp/maestro-cli.zip
+    state: absent
