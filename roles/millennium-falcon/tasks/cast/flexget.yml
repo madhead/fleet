@@ -1,0 +1,37 @@
+- name: 'Cast : Flexget : Install packages'
+  pacman:
+    name: '{{ item }}'
+    state: latest
+  with_items:
+    - python2-virtualenv
+- name: 'Cast : Flexget : Create virtualenv'
+  command: virtualenv2 /home/{{ millennium_falcon.pilot }}/.flexget/virtualen/
+  become: true
+  become_user: '{{ millennium_falcon.pilot }}'
+- name: 'Cast : Flexget : Install Flexget'
+  pip:
+    name: flexget
+    virtualenv: /home/{{ millennium_falcon.pilot }}/.flexget/virtualenv/
+  become: true
+  become_user: '{{ millennium_falcon.pilot }}'
+- name: 'Cast : Flexget : Create user unit'
+  template:
+    src: flexget.service.j2
+    dest: /home/{{ millennium_falcon.pilot }}/.config/systemd/user/flexget.service
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
+    mode: 0644
+- name: 'Cast : Flexget : Configuration file'
+  include: ../settings/dotfile_file.yml
+  with_items:
+    - .flexget/config.yml
+- name: 'Cast : Flexget : Allows users who are not logged in to run long-running services'
+  command: loginctl enable-linger {{ millennium_falcon.pilot }}
+- name: 'Cast : Flexget : Enable service'
+  command: systemctl --user enable flexget
+  become: true
+  become_user: '{{ millennium_falcon.pilot }}'
+- name: 'Cast : Flexget : Start service'
+  command: systemctl --user start flexget
+  become: true
+  become_user: '{{ millennium_falcon.pilot }}'

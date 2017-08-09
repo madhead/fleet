@@ -1,0 +1,11 @@
+- name: 'Cast : qBittorrent : Update Pacman cache'
+  pacman:
+    update_cache: true
+- name: 'Cast : qBittorrent : Install packages'
+  pacman:
+    name: qbittorrent
+    state: latest
+- name: 'Cast : qBittorrent : Configuration file'
+  include: ../settings/dotfile_file.yml
+  with_items:
+    - .config/qBittorrent/qBittorrent.conf

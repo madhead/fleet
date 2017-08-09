@@ -1,0 +1,11 @@
+- include: plex.yml
+  tags:
+    - plex-cast
+
+- include: qbittorrent.yml
+  tags:
+    - qbittorrent-cast
+
+- include: flexget.yml
+  tags:
+    - flexget-cast

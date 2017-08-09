@@ -1,0 +1,22 @@
+- name: 'Cast : Plex : Install Plex'
+  command: yaourt -S {{ item }} --noconfirm --needed
+  with_items:
+    - plex-media-server
+  become: false
+- name: 'Cast : Plex : Create media directory'
+  file:
+    path: '{{ cast.plex.media_directory }}'
+    state: directory
+    owner: plex
+    group: plex
+    mode: 0775
+- name: 'Cast : Plex : Create media subdirectories'
+  file:
+    path: '{{ cast.plex.media_directory }}/{{ item }}'
+    state: directory
+    owner: plex
+    group: plex
+    mode: 0775
+  with_items:
+    - shows
+    - movies

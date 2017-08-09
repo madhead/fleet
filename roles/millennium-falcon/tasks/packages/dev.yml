@@ -17,6 +17,7 @@
     - virtualbox
     - nodejs
     - npm
+    - python2-virtualenv
 - name: 'Packages : Dev : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:

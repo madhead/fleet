@@ -31,7 +31,6 @@
     - xdotool
     - youtube-dl
     - krename
-    - python2-pathlib
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
@@ -41,12 +40,6 @@
     - anki
     - hugo-bin
     - robocut
-    - python-plumbum
-    - python2-plumbum
-    - python2-rpyc
-    - python2-terminaltables
-    - python2-zxcvbn
-    - flexget
     - snx
   become: false
 - name: 'Packages : Extra : Remove unused packages'
@@ -55,4 +48,3 @@
     state: absent
   with_items:
     - yakuake
-    - qbittorrent
