@@ -21,17 +21,24 @@
     owner: '{{ millennium_falcon.pilot }}'
     group: '{{ millennium_falcon.crew }}'
     mode: 0644
+- name: 'Cast : Flexget : Create user timer'
+  template:
+    src: flexget.timer.j2
+    dest: /home/{{ millennium_falcon.pilot }}/.config/systemd/user/flexget.timer
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
+    mode: 0644
 - name: 'Cast : Flexget : Configuration file'
   include: ../settings/dotfile_file.yml
   with_items:
     - .flexget/config.yml
 - name: 'Cast : Flexget : Allows users who are not logged in to run long-running services'
   command: loginctl enable-linger {{ millennium_falcon.pilot }}
-- name: 'Cast : Flexget : Enable service'
-  command: systemctl --user enable flexget
+- name: 'Cast : Flexget : Enable timer'
+  command: systemctl --user enable flexget.timer
   become: true
   become_user: '{{ millennium_falcon.pilot }}'
-- name: 'Cast : Flexget : Start service'
-  command: systemctl --user start flexget
+- name: 'Cast : Flexget : Start timer'
+  command: systemctl --user start flexget.timer
   become: true
   become_user: '{{ millennium_falcon.pilot }}'

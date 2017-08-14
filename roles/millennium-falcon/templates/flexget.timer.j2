@@ -1,0 +1,9 @@
+[Unit]
+Description=FlexGet timer
+
+[Timer]
+OnBootSec=0min
+OnCalendar=*:0,15,30,45
+
+[Install]
+WantedBy=timers.target

@@ -3,9 +3,7 @@ Description=FlexGet Daemon
 After=network.target
 
 [Service]
-ExecStart=/home/{{ millennium_falcon.pilot }}/.flexget/virtualenv/bin/flexget daemon start
-ExecStop=/home/{{ millennium_falcon.pilot }}/.flexget/virtualenv/bin/flexget daemon stop
-ExecReload=/home/{{ millennium_falcon.pilot }}/.flexget/virtualenv/bin/flexget daemon reload
+ExecStart=/home/{{ millennium_falcon.pilot }}/.flexget/virtualenv/bin/flexget execute
 
 [Install]
 WantedBy=default.target
