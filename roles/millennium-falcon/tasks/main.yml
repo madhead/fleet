@@ -1,23 +1,27 @@
-# - include: packages/main.yml
-#   tags:
-#     - packages
-#
-# - include: home/main.yml
-#   tags:
-#     - home
-#
-# - include: projects/main.yml
-#   tags:
-#     - projects
-#
-# - include: settings/main.yml
-#   tags:
-#     - settings
+- include: packages/main.yml
+  tags:
+    - packages
+
+- include: home/main.yml
+  tags:
+    - home
+
+- include: projects/main.yml
+  tags:
+    - projects
+
+- include: settings/main.yml
+  tags:
+    - settings
 
 - include: cast/main.yml
   tags:
     - cast
 
-# - include: maestro/main.yml
-#   tags:
-#     - maestro
+- include: maestro/main.yml
+  tags:
+    - maestro
+
+- include: snx/main.yml
+  tags:
+    - snx

@@ -1,0 +1,24 @@
+- name: 'SNX : Update Pacman cache'
+  pacman:
+    update_cache: true
+- name: 'SNX : Install packages'
+  pacman:
+    name: '{{ item }}'
+    state: latest
+  with_items:
+    - lib32-libstdc++5
+    - lib32-pam
+- name: 'SNX : Copy installer'
+  copy:
+    src: ../files/snx_install.sh
+    dest: /tmp/snx_install.sh
+    owner: 'root'
+    group: 'root'
+    mode: 0755
+- name: 'SNX : Install SNX'
+  script: /tmp/snx_install.sh
+- name: 'SNX : Remove temporary file'
+  when: global.clean_tmp
+  file:
+    path: /tmp/snx_install.sh
+    state: absent
