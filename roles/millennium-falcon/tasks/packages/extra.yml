@@ -31,7 +31,7 @@
     - xdotool
     - youtube-dl
     - krename
-    - polipo
+    - squid
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
