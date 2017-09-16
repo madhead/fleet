@@ -1,0 +1,52 @@
+- name: 'Apache DS : Download distribution'
+  get_url:
+    url: http://www-eu.apache.org/dist/directory/studio/{{ apache_ds.version }}/ApacheDirectoryStudio-{{ apache_ds.version }}-linux.gtk.x86_64.tar.gz
+    dest: /tmp/ApacheDirectoryStudio-{{ apache_ds.version }}-linux.gtk.x86_64.tar.gz
+    checksum: '{{ apache_ds.checksum }}'
+- name: 'Apache DS : Remove previous version'
+  file:
+    path: '{{ apache_ds.install_directory }}'
+    state: absent
+- name: 'Apache DS : Prepare installation directory'
+  file:
+    path: '{{ apache_ds.install_directory }}'
+    owner: root
+    group: root
+    state: directory
+- name: 'Apache DS : Remove temporary directory'
+  file:
+    path: /tmp/ApacheDirectoryStudio
+    state: absent
+- name: 'Apache DS : Prepare temporary directory'
+  file:
+    path: /tmp/ApacheDirectoryStudio
+    owner: root
+    group: root
+    state: directory
+- name: 'Apache DS : Unpack distribution'
+  unarchive:
+    list_files: true
+    src: /tmp/ApacheDirectoryStudio-{{ apache_ds.version }}-linux.gtk.x86_64.tar.gz
+    dest: '{{ apache_ds.install_directory }}'
+    copy: false
+    owner: root
+    group: root
+  register: unpacked
+- name: 'Apache DS : Move distribution to temporary directory'
+  shell: mv {{ apache_ds.install_directory }}/ApacheDirectoryStudio/* /tmp/ApacheDirectoryStudio
+- name: 'Apache DS : Remove useless directory'
+  file:
+    path: '{{ apache_ds.install_directory }}/ApacheDirectoryStudio'
+    state: absent
+- name: 'Apache DS : Move distribution'
+  shell: mv /tmp/ApacheDirectoryStudio/* {{ apache_ds.install_directory }}
+- name: 'Apache DS : Remove temporary file'
+  when: global.clean_tmp
+  file:
+    path: /tmp/ApacheDirectoryStudio-{{ apache_ds.version }}-linux.gtk.x86_64.tar.gz
+    state: absent
+- name: 'Apache DS : Remove temporary directory'
+  when: global.clean_tmp
+  file:
+    path: /tmp/ApacheDirectoryStudio
+    state: absent

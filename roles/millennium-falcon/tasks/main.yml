@@ -25,3 +25,7 @@
 - include: snx/main.yml
   tags:
     - snx
+
+- include: apache_ds/main.yml
+  tags:
+    - apache_ds

@@ -1,0 +1,8 @@
+apache_ds:
+  version: 2.0.0.v20161101-M12
+
+  checksum: "md5: 38f6baa26d303dc28ce1f6df4c7a9d99"
+
+  single_installation: true # Keep other Java distributions or remove them?
+
+  install_directory: /opt/apache_ds
