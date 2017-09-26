@@ -1,0 +1,5 @@
+telek:
+  version: 0.0.1+d6ae32a
+  user: telek
+  single_installation: true
+  install_directory: /opt/telek

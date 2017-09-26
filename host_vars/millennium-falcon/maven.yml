@@ -1,0 +1,11 @@
+maven:
+  version:
+    major: "3"
+    minor: "5"
+    patch: "0"
+
+  checksum: "md5: 35c39251d2af99b6624d40d801f6ff02"
+
+  single_installation: true
+
+  install_directory: /opt/maven

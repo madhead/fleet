@@ -1,0 +1,46 @@
+- name: Download Maven distribution
+  get_url:
+    url: 'http://www-eu.apache.org/dist/maven/maven-{{ maven.version.major }}/{{ maven.version.major }}.{{ maven.version.minor }}.{{ maven.version.patch }}/binaries/apache-maven-{{ maven.version.major }}.{{ maven.version.minor }}.{{ maven.version.patch }}-bin.tar.gz'
+    dest: '{{ tmp_file }}'
+    checksum: '{{ maven.checksum }}'
+- name: Create required directories
+  file:
+    path: '{{ maven.install_directory }}'
+    owner: root
+    group: root
+    state: directory
+- name: Unpack distribution
+  unarchive:
+    list_files: true
+    src: '{{ tmp_file }}'
+    dest: '{{ maven.install_directory }}'
+    copy: false
+    owner: root
+    group: root
+  register: unpacked
+- name: Create unversioned symlink
+  file:
+    src: '{{ maven.install_directory }}/{{ unpacked.files[0] | dirname }}'
+    dest: '{{ maven.install_directory }}/maven'
+    state: link
+    owner: root
+    group: root
+- name: Create environment entry for M2_HOME
+  template:
+    src: maven.sh.j2
+    dest: /etc/profile.d/maven.sh
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - java_env
+- name: Remove temporary file
+  when: global.clean_tmp
+  file:
+    path: '{{ tmp_file }}'
+    state: absent
+- name: Keep single Maven version
+  when: maven.single_installation
+  shell: "find . -maxdepth 1 -and \\( -not -name maven -and -not -name {{ (unpacked.files[0]) | dirname }} -and -name '*maven*'  -and \\( -type f -or -type d -or -type l \\) \\) -exec rm -r \"{}\" \\;"
+  args:
+    chdir: '{{ maven.install_directory }}'

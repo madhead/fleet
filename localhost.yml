@@ -19,3 +19,8 @@
       become_user: root
       tags:
         - java
+    - role: maven
+      become: true
+      become_user: root
+      tags:
+        - maven
