@@ -18,7 +18,6 @@
     - nodejs
     - npm
     - python2-virtualenv
-    - cabal-install
 - name: 'Packages : Dev : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
