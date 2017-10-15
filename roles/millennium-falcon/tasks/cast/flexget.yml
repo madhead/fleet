@@ -29,7 +29,7 @@
     group: '{{ millennium_falcon.crew }}'
     mode: 0644
 - name: 'Cast : Flexget : Configuration file'
-  include: ../settings/dotfile_file.yml
+  include_tasks: ../settings/dotfile_file.yml
   with_items:
     - .flexget/config.yml
 - name: 'Cast : Flexget : Allows users who are not logged in to run long-running services'

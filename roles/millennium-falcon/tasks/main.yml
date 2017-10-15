@@ -1,31 +1,31 @@
-- include: packages/main.yml
+- import_tasks: packages/main.yml
   tags:
     - packages
 
-- include: home/main.yml
+- import_tasks: home/main.yml
   tags:
     - home
 
-- include: projects/main.yml
+- import_tasks: projects/main.yml
   tags:
     - projects
 
-- include: settings/main.yml
+- import_tasks: settings/main.yml
   tags:
     - settings
 
-- include: cast/main.yml
+- import_tasks: cast/main.yml
   tags:
     - cast
 
-- include: maestro/main.yml
+- import_tasks: maestro/main.yml
   tags:
     - maestro
 
-- include: snx/main.yml
+- import_tasks: snx/main.yml
   tags:
     - snx
 
-- include: apache_ds/main.yml
+- import_tasks: apache_ds/main.yml
   tags:
     - apache_ds

@@ -1,7 +1,7 @@
 - name: 'Settings : System : Set time and date automatically'
   command: timedatectl set-ntp true
 
-- include: dotfile_file.yml
+- include_tasks: dotfile_file.yml
   with_items:
     - .config/kdeglobals
     - .config/plasmarc

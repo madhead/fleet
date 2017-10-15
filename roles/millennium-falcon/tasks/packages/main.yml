@@ -1,15 +1,15 @@
-- include: base.yml
+- import_tasks: base.yml
   tags:
     - base-packages
 
-- include: dev.yml
+- import_tasks: dev.yml
   tags:
     - dev-packages
 
-- include: extra.yml
+- import_tasks: extra.yml
   tags:
     - extra-packages
 
-- include: games.yml
+- import_tasks: games.yml
   tags:
     - games-packages

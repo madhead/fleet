@@ -1,16 +1,16 @@
-- include: host/main.yml
+- import_tasks: host/main.yml
   tags:
     - host
 
-- include: packages/main.yml
+- import_tasks: packages/main.yml
   tags:
     - packages
 
-- include: users/main.yml
+- import_tasks: users/main.yml
   tags:
     - users
 
-- include: security/main.yml
+- import_tasks: security/main.yml
   tags:
     - security
   when: not docker

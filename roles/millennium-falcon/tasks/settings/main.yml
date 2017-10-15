@@ -1,23 +1,23 @@
-- include: system.yml
+- import_tasks: system.yml
   tags:
     - system-settings
 
-- include: atom.yml
+- import_tasks: atom.yml
   tags:
     - atom-settings
 
-- include: zsh.yml
+- import_tasks: zsh.yml
   tags:
     - zsh-settings
 
-- include: git.yml
+- import_tasks: git.yml
   tags:
     - git-settings
 
-- include: konsole.yml
+- import_tasks: konsole.yml
   tags:
     - konsole-settings
 
-- include: krusader.yml
+- import_tasks: krusader.yml
   tags:
     - krusader-settings

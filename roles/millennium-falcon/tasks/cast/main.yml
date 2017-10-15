@@ -1,11 +1,11 @@
-- include: plex.yml
+- import_tasks: plex.yml
   tags:
     - plex-cast
 
-- include: qbittorrent.yml
+- import_tasks: qbittorrent.yml
   tags:
     - qbittorrent-cast
 
-- include: flexget.yml
+- import_tasks: flexget.yml
   tags:
     - flexget-cast

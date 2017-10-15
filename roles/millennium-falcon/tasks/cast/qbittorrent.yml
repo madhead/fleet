@@ -6,6 +6,6 @@
     name: qbittorrent
     state: latest
 - name: 'Cast : qBittorrent : Configuration file'
-  include: ../settings/dotfile_file.yml
+  include_tasks: ../settings/dotfile_file.yml
   with_items:
     - .config/qBittorrent/qBittorrent.conf

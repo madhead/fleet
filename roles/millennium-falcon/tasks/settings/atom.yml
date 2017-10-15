@@ -1,4 +1,4 @@
-- include: dotfile_file.yml
+- include_tasks: dotfile_file.yml
   with_items:
     - .atom/keymap.cson
 # TODO: Install packages and themes

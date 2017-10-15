@@ -1,6 +1,6 @@
 # Chewie, we're home!
 
-- include: home_subdirectory.yml
+- include_tasks: home_subdirectory.yml
   with_items:
     - Books
     - Desktop
