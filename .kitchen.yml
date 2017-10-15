@@ -1,0 +1,27 @@
+---
+driver:
+  name: vagrant
+  network:
+    - - private_network
+      - type: dhcp
+
+provisioner:
+  name: ansible_playbook
+  roles_path: roles
+  hosts: default
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: terrywang/archlinux
+
+suites:
+  - name: millennium-falcon
+    driver:
+      customize:
+        cpus: 2
+        memory: 512
+    # verifier:
+    #   inspec_tests:
+    #     - path: test/smoke/master

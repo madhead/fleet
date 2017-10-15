@@ -2,3 +2,4 @@ inventory
 *.retry
 
 .vagrant
+.kitchen
