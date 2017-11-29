@@ -1,0 +1,6 @@
+- include_tasks: dotfile_file.yml
+  with_items:
+    - .gimp-2.8/palettes/markers.gpl
+- include_tasks: dotfile_file.yml
+  with_items:
+    - .config/inkscape/palettes/markers.gpl

@@ -21,3 +21,7 @@
 - import_tasks: krusader.yml
   tags:
     - krusader-settings
+
+- import_tasks: graphik.yml
+  tags:
+    - graphik-settings
