@@ -1,0 +1,28 @@
+- name: 'YourKit : Download distribution'
+  get_url:
+    url: https://www.yourkit.com/download/YourKit-JavaProfiler-{{ yourkit.version }}.zip
+    dest: /tmp/YourKit-JavaProfiler-{{ yourkit.version }}.zip
+- name: 'YourKit : Remove previous version'
+  file:
+    path: '{{ yourkit.install_directory }}'
+    state: absent
+- name: 'YourKit : Prepare installation directory'
+  file:
+    path: '{{ yourkit.install_directory }}'
+    owner: root
+    group: root
+    state: directory
+- name: 'YourKit : Unpack distribution'
+  unarchive:
+    list_files: true
+    src: /tmp/YourKit-JavaProfiler-{{ yourkit.version }}.zip
+    dest: '{{ yourkit.install_directory }}'
+    copy: false
+    owner: root
+    group: root
+  register: unpacked
+- name: 'YourKit : Remove temporary file'
+  when: global.clean_tmp
+  file:
+    path: /tmp/YourKit-JavaProfiler-{{ yourkit.version }}.zip
+    state: absent

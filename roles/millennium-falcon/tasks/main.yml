@@ -29,3 +29,7 @@
 - import_tasks: apache_ds/main.yml
   tags:
     - apache_ds
+
+- import_tasks: yourkit/main.yml
+  tags:
+    - yourkit

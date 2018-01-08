@@ -1,0 +1,6 @@
+yourkit:
+  version: 2017.02-b68
+
+  single_installation: true
+
+  install_directory: /opt/yourkit
