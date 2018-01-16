@@ -5,7 +5,7 @@
   with_items:
     - python2-virtualenv
 - name: 'Cast : Flexget : Create virtualenv'
-  command: virtualenv2 /home/{{ millennium_falcon.pilot }}/.flexget/virtualen/
+  command: virtualenv2 /home/{{ millennium_falcon.pilot }}/.flexget/virtualenv/
   become: true
   become_user: '{{ millennium_falcon.pilot }}'
 - name: 'Cast : Flexget : Install Flexget'

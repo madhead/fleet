@@ -33,6 +33,7 @@
     - krename
     - squid
     - graphviz
+    - perl-image-exiftool
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
