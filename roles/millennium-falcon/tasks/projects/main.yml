@@ -10,11 +10,11 @@
   with_items:
     - name: cfg
       repo: git@github.com:madhead/cfg.git
-    - name: fleet
-      repo: git@github.com:madhead/fleet.git
+#    - name: fleet
+#      repo: git@github.com:madhead/fleet.git
     - name: oh-my-zsh
       repo: git@github.com:madhead/oh-my-zsh.git
-    - name: playgrounds
-      repo: git@github.com:madhead/playgrounds.git
+#    - name: playgrounds
+#      repo: git@github.com:madhead/playgrounds.git
     - name: t-shirts
       repo: git@github.com:madhead/t-shirts.git

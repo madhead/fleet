@@ -23,26 +23,27 @@
     - wireshark-qt
     - strace
     - rclone
-    - ktorrent
-    - tig
+#    - ktorrent
+#    - tig
     - bind-tools
     - keepass
     - aspell-en
-    - xdotool
+#    - xdotool
     - youtube-dl
     - krename
-    - squid
-    - graphviz
-    - perl-image-exiftool
+    - hugo
+#    - squid
+#    - graphviz
+#    - perl-image-exiftool
 - name: 'Packages : Extra : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
   with_items:
     - google-chrome
-    - saberlight-git
+#    - saberlight-git
     - whatpulse
     - anki
-    - hugo-bin
-    - robocut
+#    - hugo-bin
+#    - robocut
   become: false
 - name: 'Packages : Extra : Remove unused packages'
   pacman:

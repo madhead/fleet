@@ -18,18 +18,6 @@
   tags:
     - cast
 
-- import_tasks: maestro/main.yml
-  tags:
-    - maestro
-
-- import_tasks: snx/main.yml
-  tags:
-    - snx
-
-- import_tasks: apache_ds/main.yml
-  tags:
-    - apache_ds
-
-- import_tasks: yourkit/main.yml
-  tags:
-    - yourkit
+#- import_tasks: yourkit/main.yml
+#  tags:
+#    - yourkit

@@ -14,13 +14,13 @@
       become_user: root
       tags:
         - millennium-falcon
-    - role: java
-      become: true
-      become_user: root
-      tags:
-        - java
-    - role: maven
-      become: true
-      become_user: root
-      tags:
-        - maven
+#    - role: java
+#      become: true
+#      become_user: root
+#      tags:
+#        - java
+#    - role: maven
+#      become: true
+#      become_user: root
+#      tags:
+#        - maven

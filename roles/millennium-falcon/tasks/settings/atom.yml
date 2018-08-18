@@ -1,5 +1,9 @@
 - include_tasks: dotfile_file.yml
   with_items:
+    - .atom/config.cson
+    - .atom/init.coffee
     - .atom/keymap.cson
+    - .atom/snippets.cson
+    - .atom/styles.less
 # TODO: Install packages and themes
 # TODO: Configs?
