@@ -17,6 +17,8 @@
 #    - virtualbox
     - nodejs
     - npm
+    - jdk8-openjdk
+    - jdk10-openjdk
 #    - python2-virtualenv
 - name: 'Packages : Dev : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
