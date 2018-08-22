@@ -18,7 +18,11 @@
     - nodejs
     - npm
     - jdk8-openjdk
+    - openjdk8-src
+    - openjdk8-doc
     - jdk10-openjdk
+    - openjdk10-src
+    - openjdk10-doc
 #    - python2-virtualenv
 - name: 'Packages : Dev : Install packages from AUR'
   command: yaourt -S {{ item }} --noconfirm --needed
@@ -28,20 +32,19 @@
     - jetbrains-toolbox
 #    - chef-dk
   become: false
-#- name: 'Packages : Dev : Install RVM'
-#  include_role:
-#    name: rvm_io.ruby
-#  vars:
-#    rvm1_user: '{{ millennium_falcon.pilot }}'
-#    rvm1_rubies:
-#      - 2.4.1
-#- name: 'Packages : Dev : Add NVM and RVM to PATH'
-#  blockinfile:
-#    path: /home/{{ millennium_falcon.pilot }}/.zshrc-local
-#    create: true
-#    owner: '{{ millennium_falcon.pilot }}'
-#    group: '{{ millennium_falcon.crew }}'
-#    block: |
-#      source /usr/share/nvm/init-nvm.sh
-#      source /home/{{ millennium_falcon.pilot }}/.rvm/scripts/rvm
-#    state: present
+- name: 'Packages : Dev : Install RVM'
+  include_role:
+    name: rvm_io.ruby
+  vars:
+    rvm1_user: '{{ millennium_falcon.pilot }}'
+    rvm1_rubies:
+      - 2.5.1
+- name: 'Packages : Dev : Add NVM and RVM to PATH'
+  blockinfile:
+    path: /home/{{ millennium_falcon.pilot }}/.zshrc-local
+    create: true
+    owner: '{{ millennium_falcon.pilot }}'
+    group: '{{ millennium_falcon.crew }}'
+    block: |
+      source /home/{{ millennium_falcon.pilot }}/.rvm/scripts/rvm
+    state: present
