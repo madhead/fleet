@@ -1,0 +1,55 @@
+- name: 'Telegraf : Install Telegraf'
+  command: yaourt -S {{ item }} --noconfirm --needed
+  with_items:
+    - telegraf-bin
+- name: 'Telegraf : Add user to docker group'
+  user:
+    name: telegraf
+    groups: docker
+    append: yes
+- name: 'Telegraf : telegraf.conf'
+  template:
+    src: telegraf/telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+    owner: telegraf
+    group: telegraf
+    mode: 0644
+- name: 'Telegraf : telegraf.d'
+  file:
+    path: /etc/telegraf/telegraf.d
+    owner: telegraf
+    group: telegraf
+    state: directory
+- name: 'Telegraf : telegraf.conf'
+  template:
+    src: 'telegraf/telegraf.conf.d/{{ item }}.conf.j2'
+    dest: '/etc/telegraf/telegraf.d/{{ item }}.conf'
+    owner: telegraf
+    group: telegraf
+    mode: 0644
+  with_items:
+    - input_cpu
+    - input_disk
+    - input_diskio
+    - input_docker
+    - input_internal
+    - input_interrupts
+    - input_kernel
+    - input_mem
+    - input_net
+    - input_netstat
+    - input_processes
+    - input_procstat
+    - input_sensors
+    - input_swap
+    - input_system
+    - input_temp
+    - input_wireless
+    - output_cloudwatch
+- name: 'Telegraf : systemd service overrides'
+  template:
+    src: telegraf/override.conf.j2
+    dest: /etc/systemd/system/telegraf.service.d/override.conf
+    owner: root
+    group: root
+    mode: 0644

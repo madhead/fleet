@@ -21,3 +21,7 @@
 #- import_tasks: yourkit/main.yml
 #  tags:
 #    - yourkit
+
+- import_tasks: telegraf/main.yml
+  tags:
+    - telegraf
